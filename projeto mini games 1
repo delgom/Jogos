@@ -1,0 +1,529 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <math.h>
+#include <time.h>
+#include<string.h> 
+
+void menu_principal();
+void perguntas_respostas();
+void adivinhe();
+void olho_cobra();
+
+int soma_total = 0;
+
+int dj1_1 = 0;
+int dj1_2 = 0;
+
+int dj2_1 = 0;
+int dj2_2 = 0;
+
+int pontos_j1 = 0;
+int pontos_j2 = 0;
+
+int jogardado(){
+	
+	return rand()%6+1;
+
+}
+int sorteiajogador(){
+	
+	return rand()%1+1;
+
+}
+void main(){
+    
+    
+    
+    srand(time(NULL));
+    
+    //printf("ret: [%d]", jogardado());
+    
+	menu_principal();
+	
+	return 0;
+    
+}
+void menu_principal(){
+	int opcao;
+    int i;
+    
+    
+    do{
+		
+        printf("Escolha o seu mini jogo:\n");
+        printf("1 - Pergunta e Resposta\n");
+        printf("2 - Adivinhe o Numero\n");
+        printf("3 - Olho da Cobra\n");
+        printf("4 - sair\n");
+        printf("Escolha a opcao que deseja: ");
+        scanf("%d", &opcao);
+        system("cls");
+    
+        switch(opcao){
+
+            case 1:
+            	perguntas_respostas();
+            	break;
+    	    case 2:
+    	    	advinhe();
+    	    	break;
+    		case 3:
+				olho_cobra();
+				break;
+            case 4:
+				exit (EXIT_SUCCESS);
+				break;
+            default:
+				printf("Opcao invalida\n");
+				printf("\nPrecione 1 para voltar ao menu pricipal: ");
+        		scanf("%d", &i);
+        		system("cls");
+				break;
+        }
+    } while(i == 1);
+}
+
+void perguntas_respostas(){
+	int op1pr;
+	int op2pr;
+	int	op3pr;
+	int i;
+	
+	do{
+		while(op1pr < 1 || op1pr >3){
+			printf("------1 Questao-----\n");
+			printf("Quem foi para a lua?\n");
+			printf("1 - Neil Armstrong\n");
+			printf("2 - Iuri Gagarin\n");
+			printf("3 - Regina Case\n");
+			printf("Escolha a opcao que deseja: ");
+			scanf("%d", &op1pr);
+		}
+		
+		if(op1pr == 1){
+			printf("Parabens voce acertou em cheio\n");
+		} else if(op1pr == 2 || op1pr == 3){
+			printf("Voce errou feio\n");
+			printf("A resposta correta era o numero 1\n");
+		}
+		system("pause");
+		system("cls");
+		
+		while(op2pr < 1 || op2pr >3){
+			printf("------------2 Questao-------------\n");
+			printf("Qual foi o primeiro Pokemon criado?\n");
+			printf("1 - Pikachu\n");
+			printf("2 - Arceus\n");
+			printf("3 - Rhydon\n");
+			printf("Escolha a opcao que deseja: ");
+			scanf("%d", &op2pr);
+		}
+		
+		if(op2pr == 3){
+			printf("Parabens voceu acertou em cheio\n");
+		} else if (op2pr == 1 || op2pr == 2){
+			printf("Voce errou feio\n");
+			printf("A resposta correta era o numero 3\n");
+		}
+		system("pause");
+		system("cls");
+		
+		while(op3pr < 1 || op3pr >3){
+			printf("------------3 Questao-------------\n");
+			printf("No jogo Rainbow Six Siege, qual foi o(a) operador(a) que foi lancado(a) junto a season Demon Veil?\n");
+			printf("1 - Goyo\n");
+			printf("2 - Hibana\n");
+			printf("3 - Azami\n");
+			printf("Escolha a opcao que deseja: ");
+			scanf("%d", &op3pr);
+		}
+		
+		if(op3pr == 3){
+		printf("Parabens voceu acertou em cheio\n");
+		} else if (op3pr == 1 || op3pr == 2){
+			printf("Voce errou feio\n");
+			printf("A resposta correta era o numero 3\n");
+		}
+		system("pause");
+		system("cls");
+		
+		printf("1 - Voltar para o menu principal\n");
+		printf("2 - Jogar de novo\n");
+		printf("Escolha a opcao que dejese: ");
+		scanf("%d", &i);
+		system("cls");
+		if(i==1){
+			menu_principal();
+		} else{
+			perguntas_respostas();
+		}
+  
+	} while(i == 2);
+}
+
+void advinhe(){
+	int i;
+	int vida;
+	int num;
+    int computer;	
+					
+	do{
+				
+		printf("Bem-Vindo ao jogo advinhe o numero\n\n");
+		printf("Nesse jogo, voce tera 5 tentativas para acertar o numero\n");
+		printf("O numero sorteado esta entre 0 a 1000\n\n");
+		printf("aperte qualqer tecla para comeca: ");
+		getch();
+		system("cls");
+                
+		computer = rand() %1000;
+                
+		for(vida = 0; vida < 5; vida++){
+                	
+			printf("Digite o numero: ");
+			scanf("%d", &num);
+                
+			if(computer > num){
+				printf("O %d e menor do que eu pensei\n\n", num);		
+			} else if(computer < num){
+				printf("O %d e maior do que eu pensei\n\n", num);
+			} else if(computer == num){
+				printf("Parabens voce e minimamente capaz\n\n");
+				system("pause");
+						
+				printf("1 - Voltar para o menu principal\n");
+    	   		printf("2 - Jogar de novo\n");
+				printf("Escolha a opcao que deseje: ");
+    	   		scanf("%d", &i);
+    			system("cls");
+     			if(i==1){
+					menu_principal();
+				}else{
+					advinhe();
+				}
+			}
+		}
+					
+		printf("Voce nao consegui advinhar o numero em que eu pensei\n");
+		printf("O numero em que eu pensei foi %d\n", computer);
+		system("pause");
+		system("cls");
+				
+		printf("1 - Voltar para o menu principal\n");
+		printf("2 - Jogar de novo\n");
+		printf("Escolha a opcao que deseje: ");
+		scanf("%d", &i);
+		system("cls");
+		if(i==1){
+			menu_principal();
+		} else{
+			advinhe();
+		}
+	}while(i == 2);
+}
+
+
+
+int continuarJogando(){	
+	int value;
+	char resposta[5];
+	
+	printf("\ndeseja jogar novamente?\n S-sim\n N-nao\n resposta:  ");
+	scanf("%s", &resposta);
+			
+	//printf("resposta=[%s]",resposta);
+			
+	value=strcmp(resposta,"n");  
+   			
+	if(value==0) {
+			
+		printf("\nnao");
+		return 0;
+										
+	}else{
+			
+		printf("\nsim");
+		return 1;
+	}	
+}		
+
+void JogarDadosJ1(){
+	
+	dj1_1 = jogardado();
+	dj1_2 = jogardado();
+	
+	pontos_j1 = pontos_j1 + dj1_1 + dj1_2;
+	
+	printf("\ndado1=%d",dj1_1);
+	printf("\ndado2=%d",dj1_2);
+	printf("\nPontos deste turno=%d",dj1_1 + dj1_2);
+	printf("\nTotal de Pontos J1=%d\n",pontos_j1);
+	
+}
+
+void JogarDadosJ2(){
+	
+	dj2_1 = jogardado();
+	dj2_2 = jogardado();
+
+	pontos_j2 = pontos_j2 + dj2_1 + dj2_2;
+
+	printf("\ndado1=%d",dj2_1);
+	printf("\ndado2=%d",dj2_2);
+	printf("\nPontos deste turno=%d",dj2_1 + dj2_2);
+	printf("\nTotal de Pontos J2=%d\n",pontos_j2);
+	
+	
+}
+
+int checaRegras1(){
+	int color;
+	int total1 = 0;					
+				// os dois dados deram 1, perde todos os pontos e passa a vez
+				if ((dj1_1 == 1) && (dj1_2 == 1)) {
+					
+					pontos_j1 = 0;					
+					printf("\nPontos do J1=%d",pontos_j1);
+					
+					color = 4;
+					printf("\033[%dm", 30 + color);
+					printf("\nSeu dois Dados deram 1!\nPerdeu todos os seus pontos e passou a vez...\n");
+					color = 7;
+					printf("\033[%dm", 30 + color);
+					
+					return 1;
+					
+				}
+										
+				// um dos dados deu 1, perde pontos do turno e passa vez	
+				if ((dj1_1 == 1) || (dj1_2 == 1)) {
+					
+					total1 = dj1_1 + dj1_2;
+					pontos_j1 = pontos_j1 - total1;
+					printf("\nPontos do J1=%d",pontos_j1);
+					
+					color = 4;
+					printf("\033[%dm", 30 + color);
+					printf("\nSeu Dado deu 1!\nPerdeu seus pontos do turno e passou a vez...\n");
+					color = 7;
+					printf("\033[%dm", 30 + color);
+					
+					return 2;
+					
+				}
+				
+				if(pontos_j1 >= 50) {
+					printf("\nJogador 1 - %s GANHOU com %d pontos!\n\nFim do jogo.",j1,pontos_j1);
+					return 3;
+				}	
+				
+				return 4;
+	
+}
+
+
+void olho_cobra(){
+	//int i;
+	//int d1;
+	//int d2;
+	int total1;
+	int total2;
+	//int valor1;
+	//int valor2;
+	int random;
+	//int rnd;
+	char j1 [50];
+	char j2 [50];
+	
+	int contador1 = 0;
+	int contador2 = 0;
+	
+
+		printf("Bem vindo ao jogo Olho de Cobra\n");
+		printf("Como se jogar!!!\n");
+		printf("O jogo precisa de duas pessoas, nome do J1 e do J2.\nCada um pode, em sua rodada, rolar N vezes os dados.\nPorem, se pelo menos um dos dados cair 1, o jogador perde o ponto da rodada\ne perde a vez, caso caia o numero 1 nos dois dados,\no jogador que jogou os dados perde os pontos do jogo inteiro\nalem de perder a vez. Pontuacao maxima e de 50 pontos\n\n");
+                
+		printf("Coloque o nome do Jogador 1: ");
+		scanf("%s", &j1);
+		printf("Coloque o nome do jogador 2: ");
+		scanf("%s", &j2);
+		printf("\nTecle para iniciar!\n");
+		getch();
+				
+		
+		int color = 3;
+		/*
+		0    black
+		1    red
+		2    green
+		3    yellow/brown
+		4    blue
+		5    magenta
+		6    cyan
+		7    white
+		*/
+		
+		
+		random = sorteiajogador();		
+INICIO_JOGO:
+		color = 3;
+		printf("\033[%dm", 30 + color);
+		printf("\nJogador %d iniciando o jogo!\n", random);
+		color = 7;
+		printf("\033[%dm", 30 + color);
+		
+		if (random == 1) {		
+			
+			//JOGAR1:
+			
+			if(pontos_j1 >= 50) {				
+				printf("\nJogador 1 - %s GANHOU com %d pontos!\n\nFim do jogo.",j1,pontos_j1);
+				goto FIM_JOGO;
+			}			
+						
+			// Se J1 quer continuar jogando - sim
+			if (contador1 == 0) {
+				JogarDadosJ1();
+				contador1 = contador1 + 1;
+				printf("\nPontos do J1=%d",pontos_j1);
+				//goto JOGAR1;
+			} else {
+				JogarDadosJ1();				
+				printf("\nPontos do J1=%d",pontos_j1);
+			}
+			
+			if(continuarJogando() == 1) {
+					
+			
+			do{
+								
+				JogarDadosJ1();				
+				
+				if (checaRegras1() == 3) {
+					goto FIM_JOGO;
+				} else {
+					break;
+				}
+								
+							
+			} while (continuarJogando() == 1);						
+			}
+			
+			//printf("\nPontos do J1: %d",total1);
+			//printf("\nJogardor passou o turno...\n\n");	
+			
+			random = 2;	
+			goto INICIO_JOGO;	
+			
+		}
+		
+
+		// Rotina do Jogador 2
+		if (random == 2) {
+
+			//JOGAR2:
+			
+			if(pontos_j2 >= 50) {
+				printf("\nJogador 2 - %s GANHOU com %d pontos!\n\nFim do jogo.",j2,pontos_j2);
+				goto FIM_JOGO;
+			}
+			
+			if (contador2 == 0) {
+				JogarDadosJ2();
+				contador2 = contador2 + 1;
+				printf("\nPontos do J2=%d",pontos_j2);
+				//goto JOGAR2;
+			} else {
+				JogarDadosJ2();				
+				printf("\nPontos do J2=%d",pontos_j2);
+			}
+						
+			// Se J1 quer continuar jogando - sim
+			if(continuarJogando() == 1) {
+			
+			
+			do{
+				
+				JogarDadosJ2();								
+
+				// os dois dados deram 1, perde todos os pontos e passa a vez
+				if ((dj2_1 == 1) && (dj2_2 == 1)) {
+					
+					pontos_j2 = 0;					
+					printf("\nPontos do J2=%d",pontos_j2);
+					
+					color = 4;
+					printf("\033[%dm", 30 + color);
+					printf("\nSeu dois Dados deram 1!\nPerdeu todos os seus pontos e passou a vez...\n");
+					color = 7;
+					printf("\033[%dm", 30 + color);
+					
+					break;
+					
+				}
+								
+				// um dos dados deu 1, perde pontos do turno e passa vez							
+				if ((dj2_1 == 1) || (dj2_2 == 1)) {
+					
+					total2 = dj2_1 + dj2_2;
+					pontos_j2 = pontos_j2 - total2;					
+					printf("\nPontos do J2=%d",pontos_j2);
+					
+					color = 4;
+					printf("\033[%dm", 30 + color);
+					printf("\nSeu Dado deu 1!\nPerdeu seus pontos do turno e passou a vez...\n");
+					color = 7;
+					printf("\033[%dm", 30 + color);
+					
+					break;
+					
+				}
+				
+				if(pontos_j2 >= 50) {
+					printf("\nJogador 2 - %s GANHOU com %d pontos!\n\nFim do jogo.",j2,pontos_j2);
+					goto FIM_JOGO;
+				}
+				
+			} while (continuarJogando() == 1);
+			}
+			
+			//printf("\nPontos do J1: %d",total1);
+			//printf("\nJogardor passou o turno...\n\n");	
+			
+			random = 1;	
+			goto INICIO_JOGO;	
+			
+		}
+				
+		
+FIM_JOGO:
+	color = 1;
+	printf("\033[%dm", 30 + color);
+	
+	//printf("\n\nTecle para menu principal...");
+	//getch();
+	
+	if (continuarJogando() == 1) {
+		color = 7;
+		printf("\033[%dm", 30 + color);
+
+		// zera totais dos jogadores
+		pontos_j1 = 0;
+		pontos_j2 = 0;	
+		contador1 = 0;
+		contador2 = 0;
+		
+		printf("\n NOVA Partida\n\n");
+		
+		goto INICIO_JOGO;		
+	} 		
+	
+	
+	color = 7;
+	printf("\033[%dm", 30 + color);
+	system("cls");
+
+	menu_principal();
+	
+}
